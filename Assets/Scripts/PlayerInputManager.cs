@@ -1,5 +1,5 @@
 using UnityEngine;
-unity UnityEngine.InputSystem;
+using UnityEngine.InputSystem;
 
 public class PlayerInputManager : MonoBehaviour
 {
@@ -8,6 +8,7 @@ public class PlayerInputManager : MonoBehaviour
 
     private bool wasdJoined = false;
     private bool arrowsJoined = false;
+    private bool gamepadJoined = false;
 
     void Update()
     {
@@ -37,9 +38,10 @@ public class PlayerInputManager : MonoBehaviour
 
         foreach (var gamePad in Gamepad.all)
         {
-            if (gamePad.buttonSouth.wasPressedThisFrame)
+            if (gamePad.buttonSouth.wasPressedThisFrame && !gamepadJoined)
             {
                 PlayerInput.Instantiate(playerPrefab, controlScheme: "Gamepad", pairWithDevice: gamePad);
+                gamepadJoined = true;
             }
         }
     }

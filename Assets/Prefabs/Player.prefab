@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2044447808151013356}
   - component: {fileID: 4033966754085994875}
   - component: {fileID: 3711592161533697372}
+  - component: {fileID: 7338722349987769627}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -219,3 +220,15 @@ MonoBehaviour:
   speed: 5
   jumpHeight: 2
   gravity: -9.8
+--- !u!114 &7338722349987769627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5865869130051277917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30d0f8f5fbde29042b97de226ad841de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TargetGroupAutoRegister
