@@ -8,7 +8,12 @@ public class PlayerInputManager : MonoBehaviour
 
     private bool wasdJoined = false;
     private bool arrowsJoined = false;
-    private bool gamepadJoined = false;
+    private bool[] gamepadJoined = new bool[4]; // Assuming a maximum of 4 gamepads
+
+    private Color GetRandomColor()
+    {
+        return new Color(Random.value, Random.value, Random.value);
+    }
 
     void Update()
     {
@@ -17,6 +22,13 @@ public class PlayerInputManager : MonoBehaviour
         if (!wasdJoined && Keyboard.current.spaceKey.wasPressedThisFrame)
         {
             var player = PlayerInput.Instantiate(playerPrefab, controlScheme: "WASD", pairWithDevice: Keyboard.current);
+
+            Color playerColor = GetRandomColor();
+            PlayerController playerController = player.GetComponent<PlayerController>();
+
+            playerController.SetAssignedColor(playerColor);
+            playerController.SetLabel("WASD Keyboard");
+
             if (spawnPoints.Length > 0)
             {
                 player.transform.position = spawnPoints[0].position;
@@ -36,12 +48,13 @@ public class PlayerInputManager : MonoBehaviour
             arrowsJoined = true;
         }
 
-        foreach (var gamePad in Gamepad.all)
+        for (int i = 0; i < Gamepad.all.Count; i++)
         {
-            if (gamePad.buttonSouth.wasPressedThisFrame && !gamepadJoined)
+            var gamePad = Gamepad.all[i];
+            if (i < gamepadJoined.Length && gamePad.buttonSouth.wasPressedThisFrame && !gamepadJoined[i])
             {
                 PlayerInput.Instantiate(playerPrefab, controlScheme: "Gamepad", pairWithDevice: gamePad);
-                gamepadJoined = true;
+                gamepadJoined[i] = true;
             }
         }
     }

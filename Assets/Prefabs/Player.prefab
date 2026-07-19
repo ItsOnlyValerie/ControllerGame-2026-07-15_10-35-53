@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 4033966754085994875}
   - component: {fileID: 3711592161533697372}
   - component: {fileID: 7338722349987769627}
+  - component: {fileID: -6842157669456605878}
+  - component: {fileID: -5843150356734664991}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -175,6 +177,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 0c2a86de-8f76-490c-8dcf-00453708a089
     m_ActionName: 'Gameplay/Jump[/Keyboard/space,/Keyboard/rightCtrl]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 94fde879-2f78-4599-921b-ffae57e13fde
+    m_ActionName: 'Gameplay/Attack[/Keyboard/f,/Keyboard/rightShift]'
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -220,6 +226,11 @@ MonoBehaviour:
   speed: 5
   jumpHeight: 2
   gravity: -9.8
+  groundedSnapVelocity: -2
+  knockbackDamping: 12
+  hitFlashColor: {r: 1, g: 1, b: 1, a: 1}
+  hitFlashDuration: 0.12
+  label: {fileID: 0}
 --- !u!114 &7338722349987769627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,3 +243,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30d0f8f5fbde29042b97de226ad841de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TargetGroupAutoRegister
+--- !u!114 &-6842157669456605878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5865869130051277917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09662e1ddd7d8cf4ab2d8ec820ca71a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  maxHealth: 100
+--- !u!114 &-5843150356734664991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5865869130051277917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 961cb8c6aeb3c864fbdffaa4a6626d93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCombat
+  playerController: {fileID: 3711592161533697372}
+  playerInput: {fileID: 2044447808151013356}
+  windup: 0.08
+  recovery: 0.18
+  damage: 10
+  knockback: 6
+  attackName: Punch
+  hitHeight: 1
+  forwardDistance: 0.85
+  hitRadius: 0.85
+  targetLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  maxOverlapCount: 8
+  hitImpulseForce: 0.18
+  hitImpulseDuration: 0.12
